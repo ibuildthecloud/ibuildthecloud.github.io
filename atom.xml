@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[I build the cloud]]></title>
-  <link href="http://blog.ibuildthecloud.com/atom.xml" rel="self"/>
-  <link href="http://blog.ibuildthecloud.com/"/>
-  <updated>2014-08-12T21:42:15-07:00</updated>
-  <id>http://blog.ibuildthecloud.com/</id>
+  <title><![CDATA[i build the cloud]]></title>
+  <link href="http://www.ibuildthecloud.com/atom.xml" rel="self"/>
+  <link href="http://www.ibuildthecloud.com/"/>
+  <updated>2014-08-12T21:42:41-07:00</updated>
+  <id>http://www.ibuildthecloud.com/</id>
   <author>
     <name><![CDATA[Darren Shepherd]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Evolution of Docker and Its Impact on AWS]]></title>
-    <link href="http://blog.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws/"/>
+    <link href="http://www.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws/"/>
     <updated>2014-08-12T19:30:58-07:00</updated>
-    <id>http://blog.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws</id>
+    <id>http://www.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws</id>
     <content type="html"><![CDATA[<p>I’ve been pondering a lot lately on how the Docker ecosystem will evolve and what will be its impact on the larger infrastructure market.  My current day job has allowed me over the past 8 months or so to focus almost 100% of my time doing R&amp;D efforts around Docker.  As a result, I’ve had <em>a lot</em> of time to think about these things.  In my mind I see three phases in which Docker could evolve.  I don’t see it obviously trending the way I envision and the purpose of this post is to attempt to articulate the subtle differences of how I think it should change and their impact.</p>
 
 <p>The phases I think Docker should evolve can be described as, first, Docker as an application package.  Second, Docker as a unit of orchestration, and, finally, a container cloud.  While all the hype in the media is that containers will revolutionize the cloud, based on where I see it&rsquo;s headed today, it won’t, at least not to my standards.  But it can, and that’s what I’d like to explain.  We have an incredible opportunity to completely turn the infrastructure business on its head.  So stick with me here, it gets good at the end.</p>
