@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Containers as a Service (CaaS) Is the Cloud Operating System - i build the cloud</title>
+  <meta name="author" content="Darren Shepherd">
+
+  
+  <meta name="description" content="Historically, the architecture of PaaS and IaaS has been that PaaS sits on top of IaaS. As containers have emerged as a first class technology, there &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ibuildthecloud.com/blog/2014/08/19/containers-as-a-service-caas-is-the-cloud-operating-system">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="i build the cloud" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-53769844-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">i build the cloud</a></h1>
+  
+    <h2>@ibuildthecloud - darren0</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/ibuildthecloud" rel="subscribe-github" title="@ibuildthecloud on GitHub">GitHub</a></li>
+</ul>
+  
+  
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ibuildthecloud.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Containers as a Service (CaaS) Is the Cloud Operating System</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-08-19T13:18:46-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:18 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Historically, the architecture of PaaS and IaaS has been that PaaS sits on top of IaaS.  As containers have emerged as a first class technology, there seems to be a new intermediate layer forming.  With the rise of Docker, I’ve observed two classes of platforms being built: PaaS “powered by Docker,” and Docker orchestration.  A better PaaS powered by Docker is personally of very little interest to me as it’s just a better iteration of what has been done in the past.  Docker orchestration has the potential to be more transformative.  It’s Docker orchestration that has introduced this new layer I mentioned.  Many have coined this as Containers as a Service (CaaS).  As I’ve sat and pondered the real value and impact of this layer, it finally dawned on me that CaaS is in fact the “The Cloud Operating System” and Docker’s role is to define it’s interface.</p>
+
+<h2>The IaaS/PaaS dichotomy</h2>
+
+<p>With IaaS you get raw assets that are extremely flexible.  With PaaS you get a very locked down experience that is optimized for a particular use case.  These two solution are very much on opposite sides of the spectrum.</p>
+
+<p>Netflix serves as probably the best example of someone fully exploiting the capabilities of the cloud.  What they have done with AWS is truly amazing and shows what could be accomplished.  They also serve as a cautionary tale.  While they’ve fully exploited the cloud, when I last looked, Netflix has released over 35 open source projects all centered on running scalable applications in the cloud.  While most people are not trying to run at the scale of Netflix, it does point out that there is still a significant amount of tooling needed to run in the cloud.  IaaS gives you raw infrastructure on demand but you still need to manage that infrastructure in some fashion.</p>
+
+<p>For those wanting to avoid the overhead of maintaining servers, operating systems, and runtimes, PaaS has historically been presented as the solution.  PaaS is great in that you can just focus on your code and not worry about all the runtime maintenance.  Quickly though, you run into restrictions on what your code can do.  For example, running Java on Google AppEngine (GAE) you often need to first check and see if the third party libraries you are using are compatible with GAE as not all of the JRE is fully exposed.  Other functionality, like listening on sockets, is just not possible.</p>
+
+<h2>Introduction of Containers as a Service (CaaS)</h2>
+
+<p>The introduction of CaaS solves a lot of practical issues with the IaaS/PaaS dichotomy and additionally further expands the capabilities of what one can do.  CaaS really serves as the missing layer into between IaaS and PaaS.  When you look at a server, you can break it into three logical layers: physical hardware, operating system, and applications.  Respectively, you can look at that as IaaS, CaaS, and PaaS.</p>
+
+<p>IaaS provides hardware assets whether it’s physical or a virtual representation of the physical counterpart.  What you really get are RAM, CPUs, hard drives, and NICs.  You, as the consumer of IaaS, are in control of everything else.  While the cloud provider may supply a template with an operating system, the consumer is still ultimately responsible for it.</p>
+
+<p>PaaS provides an application runtime.  This ends up being language specific, so what PaaS is providing is a managed environment for Java, Ruby, Python, etc.  PaaS is really concerned about providing what runs inside the process.</p>
+
+<p>What if I just want a generic framework to run processes of any size or shape.  That is the focus of CaaS.  While IaaS provides the hardware and PaaS provides the runtime in the process, CaaS is the missing layer that glues these two things together.</p>
+
+<h2>The Cloud Operating System</h2>
+
+<p>CaaS plays the role of the operating system.  Wikipedia states, “An operating system (OS) is software that manages computer hardware and software resources and provides common services for computer programs.”  CaaS’s responsibility is to provide a platform in which you can run processes and manage the services and resources needed by those processes.  What runs inside the process is completely arbitrary to CaaS.</p>
+
+<p>CaaS really is the next logical evolution after IaaS.  Now that I have hardware on demand, I no longer want to manage an operating system.  Instead I’d like to focus on my application, without the constraints that PaaS imposes.  There still is a value to PaaS, but its scope is diminished to providing a managed runtime.  In fact, with CaaS it is significantly easier to build PaaS.</p>
+
+<p>Many projects in the past have taken on the moniker of “The Cloud Operating System.”  I’ve never particularly liked that as I didn’t feel there was any real definition of what that meant.  Instead it was just a marketing term just as useless as the term “Cloud.”  Finally, with CaaS, I think the “Cloud Operating System” is a correct fit.  CaaS is your operating system.</p>
+
+<h2>The Role of Docker</h2>
+
+<p>How does Docker fit into all this?  As Solomon Hykes, CTO of Docker, said, “The real value of Docker is not technology.  It’s getting people to agree on something.”  If CaaS provides the operating system, and the consumer provides the user space, what is the interface of that operating system?  In the UNIX world we have POSIX.  Love it or hate it, it is a standard that defines an interface to the operating system.  Docker largely fills a similar role.</p>
+
+<p>Docker provides the language in how we describe and talk about containers.  It also defines what basic storage, networking, and services are available to the containers.  Furthermore, it helps to ensure that applications written for Docker stay portable across varying types of infrastructure.</p>
+
+<p>In summary, CaaS is the Cloud Operating System and Docker serves as its portable interface.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Darren Shepherd
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-08-19T13:18:46-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:18 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://www.ibuildthecloud.com/blog/2014/08/19/containers-as-a-service-caas-is-the-cloud-operating-system/" data-via="ibuildthecloud" data-counturl="http://www.ibuildthecloud.com/blog/2014/08/19/containers-as-a-service-caas-is-the-cloud-operating-system/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws/" title="Previous Post: Evolution of Docker and its impact on AWS">&laquo; Evolution of Docker and its impact on AWS</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Darren Shepherd -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
