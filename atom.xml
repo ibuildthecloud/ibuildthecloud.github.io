@@ -4,7 +4,7 @@
   <title><![CDATA[i build the cloud]]></title>
   <link href="http://www.ibuildthecloud.com/atom.xml" rel="self"/>
   <link href="http://www.ibuildthecloud.com/"/>
-  <updated>2014-08-21T13:51:52-07:00</updated>
+  <updated>2014-08-21T15:46:48-07:00</updated>
   <id>http://www.ibuildthecloud.com/</id>
   <author>
     <name><![CDATA[Darren Shepherd]]></name>
@@ -15,13 +15,13 @@
   
   <entry>
     <title type="html"><![CDATA[Announcing Stampede.io: A Hybrid IaaS/Docker Orchestation Platform Running on CoreOS]]></title>
-    <link href="http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/"/>
-    <updated>2014-08-20T16:54:52-07:00</updated>
-    <id>http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos</id>
+    <link href="http://www.ibuildthecloud.com/blog/2014/08/21/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/"/>
+    <updated>2014-08-21T16:54:52-07:00</updated>
+    <id>http://www.ibuildthecloud.com/blog/2014/08/21/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos</id>
     <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/UsQ9cVLieaQ" allowfullscreen></iframe></div>
 
 
-<p>I’d like to announce <a href="http://stampede.io">Stampede.io</a>.  Stampede is a hybrid IaaS/Container orchestration platform running on CoreOS.  It’s extremely simple to get up and running and should take less than 10 minutes if you already have Fleet running or a fresh install through Vagrant.  There’s also <a href="http://youtu.be/UsQ9cVLieaQ">a short demo</a> that gives a good overview of the current functionality.  The main features at the moment are</p>
+<p>I’d like to announce <a href="http://stampede.io">Stampede.io</a>.  Stampede is a hybrid IaaS/Docker orchestration platform running on CoreOS.  It’s extremely simple to get up and running and should take less than 10 minutes if you already have Fleet running or a fresh install through Vagrant.  There’s also <a href="http://youtu.be/UsQ9cVLieaQ">a short demo</a> that gives a good overview of the current functionality.  The main features at the moment are</p>
 
 <ul>
 <li>Virtual Machines
