@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Announcing Stampede.io: A Hybrid IaaS/Docker Orchestation Platform Running on CoreOS - i build the cloud</title>
+  <meta name="author" content="Darren Shepherd">
+
+  
+  <meta name="description" content="I’d like to announce Stampede.io. Stampede is a hybrid IaaS/Container orchestration platform running on CoreOS. It’s extremely simple to get up and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="i build the cloud" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-53769844-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">i build the cloud</a></h1>
+  
+    <h2>@ibuildthecloud - darren0</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/ibuildthecloud" rel="subscribe-github" title="@ibuildthecloud on GitHub">GitHub</a></li>
+</ul>
+  
+  
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ibuildthecloud.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Announcing Stampede.io: A Hybrid IaaS/Docker Orchestation Platform Running on CoreOS</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-08-20T16:54:52-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:54 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class="embed-video-container"><iframe src="http://www.youtube.com/embed/UsQ9cVLieaQ" allowfullscreen></iframe></div>
+
+
+<p>I’d like to announce <a href="http://stampede.io">Stampede.io</a>.  Stampede is a hybrid IaaS/Container orchestration platform running on CoreOS.  It’s extremely simple to get up and running and should take less than 10 minutes if you already have Fleet running or a fresh install through Vagrant.  There’s also <a href="http://youtu.be/UsQ9cVLieaQ">a short demo</a> that gives a good overview of the current functionality.  The main features at the moment are</p>
+
+<ul>
+<li>Virtual Machines
+
+<ul>
+<li>Libvirt/KVM</li>
+<li>EC2/OpenStack images work out of the box</li>
+<li>EC2 style meta data</li>
+<li>OpenStack config drive</li>
+<li>Managed DNS/DHCP</li>
+<li>User data</li>
+<li>Floating IPs</li>
+<li>Private networking</li>
+<li>VNC Console</li>
+<li>CoreOS, Ubuntu, Fedora, and Cirros templates preconfigured</li>
+</ul>
+</li>
+<li>Docker
+
+<ul>
+<li>Link containers across servers</li>
+<li>Dynamically reassign links and ports</li>
+</ul>
+</li>
+<li>Networking
+
+<ul>
+<li>VMs and containers can share the same network space</li>
+<li>By default, a private IPSec VPN is created that spans servers</li>
+<li>All containers and VMs live on a virtual network that can span across cloud</li>
+<li>Can also use any libvirt networking models for VMs</li>
+</ul>
+</li>
+<li>Interface
+
+<ul>
+<li>UI</li>
+<li>REST API
+
+<ul>
+<li>Use web browser to explore and use API</li>
+</ul>
+</li>
+<li>Command line client</li>
+<li>Python API bindings</li>
+</ul>
+</li>
+</ul>
+
+
+<p>While I feel Stampede is currently a pretty useful platform, I think the ideas behind the platform and what I’d like to accomplish are far more compelling.  On the surface this may appear to be similar to most IaaS or Docker orchestrations tools you’ve seen, but I assure you under the hood it’s implemented quite differently.  There’s many new ideas I’m playing around with, but there are two specific ideas I’d like to point out.  First is Orchestration as a Service and the second is hybrid IaaS/Container orchestration.  I talked about both these topics at more length in a <a href="http://www.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws/">recent blog</a> I did.</p>
+
+<h2>Orchestration as a Service</h2>
+
+<p>The basic idea behind Orchestration as a Service (OaaS) is to level the playing field and make it more feasible for smaller providers to compete in the cloud space.  AWS, GCE, and Azure are such juggernauts it’s hard to imagine another company would come around and enter the IaaS market, especially with margins perceived to be so low.  To compete with the big three, you have to operate at their scale.  On the other hand, you can get physical servers from just about anywhere and at a far cheaper price.  The premise of Stampede and Orchestration as a Service (OaaS) is that with a good amount of orchestration I could construct a cloud on par with AWS (ELB, EBS, VPC, etc) if all I start with is a pool of x86_64 servers that have an empty Linux distro (CoreOS), L3 connectivity, and additional block devices for storage.  By decoupling the physical infrastructure from the orchestration layer you enable the consumer to acquire hardware from whatever provider they choose.  I strongly believe this model could transform the cloud space, and make it far healthier than what it is today.  The only companies that can compete today are the ones that can afford to burn cash.</p>
+
+<h2>Hybrid IaaS/Container Orchestration</h2>
+
+<p>I very much believe that containerization is the next big thing.  But, as <a href="http://www.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws/">I spoke about before</a>, I feel the current approach of Container/Docker orchestration tools will further cement the future of the current IaaS players.  In order to to make other clouds and especially bare metal more attractive, container orchestration tools need to take on more complex storage and networking orchestration.  Basically the same storage and networking orchestration seen in IaaS.  While many tout new application architectures will remove the need for reliable storage, or networking orchestration in general, the whole world will not rewrite their applications.  AWS is a great example of this.  When AWS launched it was ephemeral VMs only.  Not until customers demanded it did they add EBS and VPC.  While many may talk of architecting your application for the cloud, the real success of AWS was that they found technologies to helped move legacy, non-cloud architectures into the cloud.  With containerization that same practical route will be key to the widespread adoption of containerization.  While I very much like the newer architectures that are emerging, you can not expect everyone to rewrite their apps to be based on ephemeral storage and service discovery.</p>
+
+<p>In the end I believe the same approaches and technologies used in IaaS orchestration are very applicable to Containers.  IaaS by itself is not sufficient for containers, and thus I’ve built a hybrid IaaS/Container orchestration system.</p>
+
+<p>I’m very proud to show off this work, but it is still raw.  The intention is to demonstrate the feasibility of what could be accomplished.  Hopefully you&rsquo;ll find this work appealing.  Have fun!</p>
+
+<p>Darren Shepherd - <a href="https://www.linkedin.com/in/darrensshepherd">https://www.linkedin.com/in/darrensshepherd</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Darren Shepherd
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-08-20T16:54:52-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:54 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/" data-via="ibuildthecloud" data-counturl="http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/19/containers-as-a-service-caas-is-the-cloud-operating-system/" title="Previous Post: Containers as a Service (CaaS) is the Cloud Operating System">&laquo; Containers as a Service (CaaS) is the Cloud Operating System</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Darren Shepherd -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
