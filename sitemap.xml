@@ -9,6 +9,12 @@
   </url>
   
   <url>
+    <loc>http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/</loc>
+    <lastmod>2014-08-20T16:54:52-07:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://www.ibuildthecloud.com/blog/2014/08/19/containers-as-a-service-caas-is-the-cloud-operating-system/</loc>
     <lastmod>2014-08-19T13:18:46-07:00</lastmod>
     <priority>0.8</priority>
@@ -23,14 +29,14 @@
   
   <url>
     <loc>http://www.ibuildthecloud.com/blog/archives/</loc>
-    <lastmod>2014-08-21T15:46:48-07:00</lastmod>
+    <lastmod>2014-08-21T16:10:08-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://www.ibuildthecloud.com/</loc>
-    <lastmod>2014-08-21T15:46:48-07:00</lastmod>
+    <lastmod>2014-08-21T16:10:08-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
