@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Stampede: How You Can Help - i build the cloud</title>
+  <meta name="author" content="Darren Shepherd">
+
+  
+  <meta name="description" content="The response to the initial release of Stampede has been overwhelmingly positive and I thank everyone for their nice comments. I&rsquo;ve had many &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ibuildthecloud.com/blog/2014/08/27/stampede-goals-and-how-to-help">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="i build the cloud" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-53769844-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">i build the cloud</a></h1>
+  
+    <h2>@ibuildthecloud - darren0</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/ibuildthecloud" rel="subscribe-github" title="@ibuildthecloud on GitHub">GitHub</a></li>
+</ul>
+  
+  
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ibuildthecloud.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Stampede: How You Can Help</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-08-27T09:24:28-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:24 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>The response to the initial release of Stampede has been overwhelmingly positive and I thank everyone for their nice comments.  I&rsquo;ve had many questions regarding how people can help.  The biggest help at this point would be feedback.  Stampede has been my pet project for a couple months and it has served as a way for me to validate some ideas I&rsquo;ve had.  How and if I continue forward with this work all depends on whether other people think this would be a useful platform.  What would be helpful is for people to think about what&rsquo;s missing from this platform that would prevent them from using it as something to manage their production apps.  Don&rsquo;t think about new greenfield applications but instead your current production apps that have some warts and hacks.  If you were to Docker-ize those apps, what would Stampede really need to manage those in production?  For example, my current roadmap would be to implement the following features:</p>
+
+<ul>
+<li>Fully managed volumes (Docker and KVM) with snapshot, restore, and backup to S3</li>
+<li>Load balancing</li>
+<li>Security groups</li>
+</ul>
+
+
+<p>What other features would you need?  Think about bare metal too.  For apps running on AWS, if you were to Docker-ize it and run it on bare metal.  What features would you lack because you no longer have EC2.</p>
+
+<p>Stampede, in its current form, has big functionality gaps and is not production worthy.  But this code base is not something I just hacked together.  My background is in writing these orchestration systems and many of the ideas I wanted to validate were about how to write a better orchestration platform and not at all related to specific virtualization/container technology.  Out of the ~50k lines of code I wrote more that 90% of that is just framework.  There is actually very little code that has to do with Docker/KVM.  The point I&rsquo;m trying to make is that I feel this is a strong platform and I have only scratched the surface of what it can do.</p>
+
+<p>Please tell your friends about Stampede, run it yourself, let me know the gaps and how you would use it.  Once I get an idea of people&rsquo;s interests then I can better decide how to take this platform forward.  <a href="https://github.com/cattleio/stampede#contact">Contact Information</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Darren Shepherd
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-08-27T09:24:28-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:24 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://www.ibuildthecloud.com/blog/2014/08/27/stampede-goals-and-how-to-help/" data-via="ibuildthecloud" data-counturl="http://www.ibuildthecloud.com/blog/2014/08/27/stampede-goals-and-how-to-help/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/21/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/" title="Previous Post: Announcing Stampede.io: A Hybrid IaaS/Docker Orchestation Platform Running on CoreOS">&laquo; Announcing Stampede.io: A Hybrid IaaS/Docker Orchestation Platform Running on CoreOS</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Darren Shepherd -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

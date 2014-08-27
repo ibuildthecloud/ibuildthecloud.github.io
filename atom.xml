@@ -4,7 +4,7 @@
   <title><![CDATA[i build the cloud]]></title>
   <link href="http://www.ibuildthecloud.com/atom.xml" rel="self"/>
   <link href="http://www.ibuildthecloud.com/"/>
-  <updated>2014-08-21T16:10:08-07:00</updated>
+  <updated>2014-08-27T09:50:38-07:00</updated>
   <id>http://www.ibuildthecloud.com/</id>
   <author>
     <name><![CDATA[Darren Shepherd]]></name>
@@ -14,87 +14,32 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Announcing Stampede.io: A Hybrid IaaS/Docker Orchestation Platform Running on CoreOS]]></title>
-    <link href="http://www.ibuildthecloud.com/blog/2014/08/21/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/"/>
-    <updated>2014-08-21T16:54:52-07:00</updated>
-    <id>http://www.ibuildthecloud.com/blog/2014/08/21/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos</id>
-    <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/UsQ9cVLieaQ" allowfullscreen></iframe></div>
-
-
-<p>I’d like to announce <a href="http://stampede.io">Stampede.io</a>.  Stampede is a hybrid IaaS/Docker orchestration platform running on CoreOS.  It’s extremely simple to get up and running and should take less than 10 minutes if you already have Fleet running or a fresh install through Vagrant.  There’s also <a href="http://youtu.be/UsQ9cVLieaQ">a short demo</a> that gives a good overview of the current functionality.  The main features at the moment are</p>
+    <title type="html"><![CDATA[Stampede: How You Can Help]]></title>
+    <link href="http://www.ibuildthecloud.com/blog/2014/08/27/stampede-goals-and-how-to-help/"/>
+    <updated>2014-08-27T09:24:28-07:00</updated>
+    <id>http://www.ibuildthecloud.com/blog/2014/08/27/stampede-goals-and-how-to-help</id>
+    <content type="html"><![CDATA[<p>The response to the initial release of Stampede has been overwhelmingly positive and I thank everyone for their nice comments.  I&rsquo;ve had many questions regarding how people can help.  The biggest help at this point would be feedback.  Stampede has been my pet project for a couple months and it has served as a way for me to validate some ideas I&rsquo;ve had.  How and if I continue forward with this work all depends on whether other people think this would be a useful platform.  What would be helpful is for people to think about what&rsquo;s missing from this platform that would prevent them from using it as something to manage their production apps.  Don&rsquo;t think about new greenfield applications but instead your current production apps that have some warts and hacks.  If you were to Docker-ize those apps, what would Stampede really need to manage those in production?  For example, my current roadmap would be to implement the following features:</p>
 
 <ul>
-<li>Virtual Machines
-
-<ul>
-<li>Libvirt/KVM</li>
-<li>EC2/OpenStack images work out of the box</li>
-<li>EC2 style meta data</li>
-<li>OpenStack config drive</li>
-<li>Managed DNS/DHCP</li>
-<li>User data</li>
-<li>Floating IPs</li>
-<li>Private networking</li>
-<li>VNC Console</li>
-<li>CoreOS, Ubuntu, Fedora, and Cirros templates preconfigured</li>
-</ul>
-</li>
-<li>Docker
-
-<ul>
-<li>Link containers across servers</li>
-<li>Dynamically reassign links and ports</li>
-</ul>
-</li>
-<li>Networking
-
-<ul>
-<li>VMs and containers can share the same network space</li>
-<li>By default, a private IPSec VPN is created that spans servers</li>
-<li>All containers and VMs live on a virtual network that can span across cloud</li>
-<li>Can also use any libvirt networking models for VMs</li>
-</ul>
-</li>
-<li>Interface
-
-<ul>
-<li>UI</li>
-<li>REST API
-
-<ul>
-<li>Use web browser to explore and use API</li>
-</ul>
-</li>
-<li>Command line client</li>
-<li>Python API bindings</li>
-</ul>
-</li>
+<li>Fully managed volumes (Docker and KVM) with snapshot, restore, and backup to S3</li>
+<li>Load balancing</li>
+<li>Security groups</li>
 </ul>
 
 
-<p>While I feel Stampede is currently a pretty useful platform, I think the ideas behind the platform and what I’d like to accomplish are far more compelling.  On the surface this may appear to be similar to most IaaS or Docker orchestrations tools you’ve seen, but I assure you under the hood it’s implemented quite differently.  There’s many new ideas I’m playing around with, but there are two specific ideas I’d like to point out.  First is Orchestration as a Service and the second is hybrid IaaS/Container orchestration.  I talked about both these topics at more length in a <a href="http://www.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws/">recent blog</a> I did.</p>
+<p>What other features would you need?  Think about bare metal too.  For apps running on AWS, if you were to Docker-ize it and run it on bare metal.  What features would you lack because you no longer have EC2.</p>
 
-<h2>Orchestration as a Service</h2>
+<p>Stampede, in its current form, has big functionality gaps and is not production worthy.  But this code base is not something I just hacked together.  My background is in writing these orchestration systems and many of the ideas I wanted to validate were about how to write a better orchestration platform and not at all related to specific virtualization/container technology.  Out of the ~50k lines of code I wrote more that 90% of that is just framework.  There is actually very little code that has to do with Docker/KVM.  The point I&rsquo;m trying to make is that I feel this is a strong platform and I have only scratched the surface of what it can do.</p>
 
-<p>The basic idea behind Orchestration as a Service (OaaS) is to level the playing field and make it more feasible for smaller providers to compete in the cloud space.  AWS, GCE, and Azure are such juggernauts it’s hard to imagine another company would come around and enter the IaaS market, especially with margins perceived to be so low.  To compete with the big three, you have to operate at their scale.  On the other hand, you can get physical servers from just about anywhere and at a far cheaper price.  The premise of Stampede and Orchestration as a Service (OaaS) is that with a good amount of orchestration I could construct a cloud on par with AWS (ELB, EBS, VPC, etc) if all I start with is a pool of x86_64 servers that have an empty Linux distro (CoreOS), L3 connectivity, and additional block devices for storage.  By decoupling the physical infrastructure from the orchestration layer you enable the consumer to acquire hardware from whatever provider they choose.  I strongly believe this model could transform the cloud space, and make it far healthier than what it is today.  The only companies that can compete today are the ones that can afford to burn cash.</p>
-
-<h2>Hybrid IaaS/Container Orchestration</h2>
-
-<p>I very much believe that containerization is the next big thing.  But, as <a href="http://www.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws/">I spoke about before</a>, I feel the current approach of Container/Docker orchestration tools will further cement the future of the current IaaS players.  In order to to make other clouds and especially bare metal more attractive, container orchestration tools need to take on more complex storage and networking orchestration.  Basically the same storage and networking orchestration seen in IaaS.  While many tout new application architectures will remove the need for reliable storage, or networking orchestration in general, the whole world will not rewrite their applications.  AWS is a great example of this.  When AWS launched it was ephemeral VMs only.  Not until customers demanded it did they add EBS and VPC.  While many may talk of architecting your application for the cloud, the real success of AWS was that they found technologies to helped move legacy, non-cloud architectures into the cloud.  With containerization that same practical route will be key to the widespread adoption of containerization.  While I very much like the newer architectures that are emerging, you can not expect everyone to rewrite their apps to be based on ephemeral storage and service discovery.</p>
-
-<p>In the end I believe the same approaches and technologies used in IaaS orchestration are very applicable to Containers.  IaaS by itself is not sufficient for containers, and thus I’ve built a hybrid IaaS/Container orchestration system.</p>
-
-<p>I’m very proud to show off this work, but it is still raw.  The intention is to demonstrate the feasibility of what could be accomplished.  Hopefully you&rsquo;ll find this work appealing.  Have fun!</p>
-
-<p>Darren Shepherd - <a href="https://www.linkedin.com/in/darrensshepherd">https://www.linkedin.com/in/darrensshepherd</a></p>
+<p>Please tell your friends about Stampede, run it yourself, let me know the gaps and how you would use it.  Once I get an idea of people&rsquo;s interests then I can better decide how to take this platform forward.  <a href="https://github.com/cattleio/stampede#contact">Contact Information</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Announcing Stampede.io: A Hybrid IaaS/Docker Orchestation Platform Running on CoreOS]]></title>
-    <link href="http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/"/>
-    <updated>2014-08-20T16:54:52-07:00</updated>
-    <id>http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos</id>
+    <link href="http://www.ibuildthecloud.com/blog/2014/08/21/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/"/>
+    <updated>2014-08-21T16:54:52-07:00</updated>
+    <id>http://www.ibuildthecloud.com/blog/2014/08/21/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos</id>
     <content type="html"><![CDATA[<div class="embed-video-container"><iframe src="http://www.youtube.com/embed/UsQ9cVLieaQ" allowfullscreen></iframe></div>
 
 
