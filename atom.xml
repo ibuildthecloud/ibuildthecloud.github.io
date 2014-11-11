@@ -4,7 +4,7 @@
   <title><![CDATA[i build the cloud]]></title>
   <link href="http://www.ibuildthecloud.com/atom.xml" rel="self"/>
   <link href="http://www.ibuildthecloud.com/"/>
-  <updated>2014-11-11T00:39:22-07:00</updated>
+  <updated>2014-11-11T00:43:45-07:00</updated>
   <id>http://www.ibuildthecloud.com/</id>
   <author>
     <name><![CDATA[Darren Shepherd]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.ibuildthecloud.com/blog/2014/11/11/announcing-rancher-dot-io/"/>
     <updated>2014-11-11T00:21:28-07:00</updated>
     <id>http://www.ibuildthecloud.com/blog/2014/11/11/announcing-rancher-dot-io</id>
-    <content type="html"><![CDATA[<p>Almost one year ago I started Stampede as an R&amp;D project to look at the implications of Docker on cloud computing moving forward, and as such I’ve explored many ideas.  After releasing Stampede, and getting so much great feedback, I&rsquo;ve decided to concentrate my efforts.  I’m renaming Stampede.io to <a href="http://rancher.io">Rancher.io</a> to signify the new direction and focus the project is taking.  Going forward, instead of the experimental personal project that Stampede was, Rancher will be a well-sponsored open source project focused on building a portable implementation of infrastructure services similar to EBS, VPC, ELB, and many other services.</p>
+    <content type="html"><![CDATA[<p>Almost one year ago I started <a href="http://stampede.io">Stampede</a> as an R&amp;D project to look at the implications of Docker on cloud computing moving forward, and as such I’ve explored many ideas.  After releasing Stampede, and getting so much great feedback, I&rsquo;ve decided to concentrate my efforts.  I’m renaming Stampede.io to <a href="http://rancher.io">Rancher.io</a> to signify the new direction and focus the project is taking.  Going forward, instead of the experimental personal project that Stampede was, Rancher will be a well-sponsored open source project focused on building a portable implementation of infrastructure services similar to EBS, VPC, ELB, and many other services.</p>
 
 <p>Most Docker projects today look to build solutions that will sit on top of Docker and allow developers to schedule, monitor and manage applications.  Rancher takes a different approach, it focuses on developing infrastructure services that will sit below Docker.  Rancher will deliver a completely portable implementation of the infrastructure services you would expect to find in a cloud such as AWS, including EBS, VPC, ELB, Security Groups, Monitoring, RDS, and many more.</p>
 
