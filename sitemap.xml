@@ -1,51 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  
+  <url>
+    <loc>http://www.ibuildthecloud.com/blog/2014/11/11/announcing-rancher-dot-io/</loc>
+    <lastmod>2014-11-11T00:21:28-07:00</lastmod>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>http://www.ibuildthecloud.com/blog/2014/08/27/stampede-goals-and-how-to-help/</loc>
     <lastmod>2014-08-27T09:24:28-07:00</lastmod>
     <priority>0.8</priority>
   </url>
-  
   <url>
     <loc>http://www.ibuildthecloud.com/blog/2014/08/21/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/</loc>
     <lastmod>2014-08-21T16:54:52-07:00</lastmod>
     <priority>0.8</priority>
   </url>
-  
   <url>
     <loc>http://www.ibuildthecloud.com/blog/2014/08/19/containers-as-a-service-caas-is-the-cloud-operating-system/</loc>
     <lastmod>2014-08-19T13:18:46-07:00</lastmod>
     <priority>0.8</priority>
   </url>
-  
   <url>
     <loc>http://www.ibuildthecloud.com/blog/2014/08/12/evolution-of-docker-and-its-impact-on-aws/</loc>
     <lastmod>2014-08-12T19:30:58-07:00</lastmod>
     <priority>0.8</priority>
   </url>
-  
-  
-  <url>
-    <loc>http://www.ibuildthecloud.com/blog/archives/</loc>
-    <lastmod>2014-08-27T09:50:38-07:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
   <url>
     <loc>http://www.ibuildthecloud.com/</loc>
-    <lastmod>2014-08-27T09:50:38-07:00</lastmod>
+    <lastmod>2014-11-11T00:39:22-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  
+  <url>
+    <loc>http://www.ibuildthecloud.com/blog/archives/</loc>
+    <lastmod>2014-11-11T00:39:22-07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>http://www.ibuildthecloud.com/blog/2014/08/20/announcing-stampede-dot-io-a-hybrid-iaas-slash-docker-orchestation-platform-running-on-coreos/index.html</loc>
-    <lastmod>2014-08-27T09:09:28Z</lastmod>
+    <lastmod>2014-11-10T17:08:08-07:00</lastmod>
     <priority>0.6</priority>
   </url>
-  
 </urlset>

@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Announcing Rancher.io: Portable Infrastructure Services for Docker - i build the cloud</title>
+  <meta name="author" content="Darren Shepherd">
+
+  
+  <meta name="description" content="Almost one year ago I started Stampede as an R&amp;D project to look at the implications of Docker on cloud computing moving forward, and as such I’ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ibuildthecloud.com/blog/2014/11/11/announcing-rancher-dot-io">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="i build the cloud" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-53769844-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">i build the cloud</a></h1>
+  
+    <h2>@ibuildthecloud - darren0</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/ibuildthecloud" rel="subscribe-github" title="@ibuildthecloud on GitHub">GitHub</a></li>
+</ul>
+  
+  
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ibuildthecloud.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Announcing Rancher.io: Portable Infrastructure Services for Docker</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-11T00:21:28-07:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:21 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Almost one year ago I started Stampede as an R&amp;D project to look at the implications of Docker on cloud computing moving forward, and as such I’ve explored many ideas.  After releasing Stampede, and getting so much great feedback, I&rsquo;ve decided to concentrate my efforts.  I’m renaming Stampede.io to <a href="http://rancher.io">Rancher.io</a> to signify the new direction and focus the project is taking.  Going forward, instead of the experimental personal project that Stampede was, Rancher will be a well-sponsored open source project focused on building a portable implementation of infrastructure services similar to EBS, VPC, ELB, and many other services.</p>
+
+<p>Most Docker projects today look to build solutions that will sit on top of Docker and allow developers to schedule, monitor and manage applications.  Rancher takes a different approach, it focuses on developing infrastructure services that will sit below Docker.  Rancher will deliver a completely portable implementation of the infrastructure services you would expect to find in a cloud such as AWS, including EBS, VPC, ELB, Security Groups, Monitoring, RDS, and many more.</p>
+
+<p>Docker has dramatically impacted cloud computing because it offers a portable package for an application.  This portability means an application will run on any infrastructure whether it is your laptop, a physical server, or a cloud.  Once you have a portable application you can do some amazing things to improve application performance, availability and costs using scheduling, service discovery, application templating, policy management, etc.  Exciting projects including Kubernetes, Panamax, Helios, Clocker, Dies, etc, are building technology on top of Docker to deliver this type of value.</p>
+
+<p>Rancher focuses on a very different problem.  Imagine I have an application running on AWS today that uses functionality from EBS and VPC.  If I Dockerize my application and run it on AWS, I will still be able to leverage EBS and VPC.  However, if I move that application to Digital Ocean, or my own datacenter, those services just don’t exist.  While Docker itself is portable, infrastructure services vary dramatically between clouds, and data centers, making real application portability almost impossible without architecting around those differences in your application.  Rancher focuses on building portable implementations of these infrastructure services that can run on any cloud, or even multiple clouds at the same time.  With Rancher you will be able to get infrastructure services as reliable as AWS provides, anywhere, including on your own hardware, another cloud provider, a dedicated server provider, or any combination of physical and virtual resources.  With Rancher, hybrid cloud is no longer an over-hyped marketing term that relies on trying to make incompatible APIs work together,  but instead a core capability as ubiquitous as Linux and Docker.</p>
+
+<p>In the short term you can expect Rancher to focus on fundamental storage and networking services similar to EBS, VPC, ELB, and Route 53.  Once those fundamental services are implemented they will serve as the foundation for other infrastructure services similar to CloudWatch, CloudMetrics, AutoScaling, RDS etc.</p>
+
+<p>I’m building Rancher, because I want users to be able to access awesome portable infrastructure services everywhere they can run Docker.  Docker is portable because Linux is everywhere, and Rancher takes the same approach; we build storage, networking, and other infrastructure services from simple Linux VMs and servers. Thank you again for all of the input on Stampede, and I hope you will join me in making Rancher an enormous success.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Darren Shepherd
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-11T00:21:28-07:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:21 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://www.ibuildthecloud.com/blog/2014/11/11/announcing-rancher-dot-io/" data-via="ibuildthecloud" data-counturl="http://www.ibuildthecloud.com/blog/2014/11/11/announcing-rancher-dot-io/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/27/stampede-goals-and-how-to-help/" title="Previous Post: Stampede: How You Can Help">&laquo; Stampede: How You Can Help</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Darren Shepherd -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
