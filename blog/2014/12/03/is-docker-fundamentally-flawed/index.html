@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Is Docker Fundamentally Flawed? - i build the cloud</title>
+  <meta name="author" content="Darren Shepherd">
+
+  
+  <meta name="description" content="When Rocket was announced CoreOS stated From a security and composability perspective, the Docker process model - where everything runs through a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ibuildthecloud.com/blog/2014/12/03/is-docker-fundamentally-flawed">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="i build the cloud" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-53769844-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">i build the cloud</a></h1>
+  
+    <h2>@ibuildthecloud - darren0</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/ibuildthecloud" rel="subscribe-github" title="@ibuildthecloud on GitHub">GitHub</a></li>
+</ul>
+  
+  
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ibuildthecloud.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Is Docker Fundamentally Flawed?</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-03T16:34:41-07:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>4:34 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>When <a href="https://coreos.com/blog/rocket/">Rocket was announced</a> CoreOS stated</p>
+
+<blockquote><p>From a security and composability perspective, the Docker process model - where everything runs through a central daemon - is fundamentally flawed.</p></blockquote>
+
+<p>I wanted to give a bit more context that may help users understand why CoreOS might feel so strongly that Docker is fundamentally flawed.  &hellip;And surprisingly this has a lot to do with systemd.</p>
+
+<p>When systemd starts a service it creates a series of cgroups.  As the service spawns child processes, the children by default stay in the same cgroup.  This is the way systemd always knows which processes are associated with a service and additionally what resources they can consume.  If a service dies systemd can cleanup all processes associated with the service regardless of who is the parent.  This is really a clever design.</p>
+
+<p>Now here&rsquo;s the problem, Docker breaks all of this (not intentionally).  When you do <code>docker run</code>, Docker makes a RPC call to the Docker daemon which spawns a child process that becomes the PID 1 of the container.  If your service unit contains a <code>docker run</code> command systemd will monitor the Docker client process.  As soon as the Docker client makes that RPC call systemd loses track of what is going on.  This is due to the fact that the container is spawned in a different cgroup from the Docker client that is being monitored by systemd.  In the end systemd can not manage Docker containers because of the daemon.  So you can begin to see why CoreOS would say that it is fundamentally flawed.</p>
+
+<p>What would CoreOS want to see Docker do differently?  CoreOS would like Docker to remove the daemon such that containers are spawned as a child of the Docker client.  If Docker was to launch containers as a child then systemd would be able to effectively
+manage Docker.  Again, you can see why CoreOS says it’s fundamentally flawed.</p>
+
+<p>So why doesn&rsquo;t Docker change?  Why doesn&rsquo;t Docker just get rid of the daemon as it so clearly conflicts with systemd.  Well first you have to consider what the daemon does.  The daemon has several roles.  It provides the remote API, maintains the state of containers, sets up resources (like staging images), and then does the execution and cleanup of containers.  Rocket has no standalone daemon so how does it achieve all of this?  Rocket largely handles setting up the resources for the container (such as staging the image) and then delegates everything to systemd-nspawn to do the rest.</p>
+
+<p>There’s the magic, systemd.  It&rsquo;s not that Rocket doesn&rsquo;t have a stand alone daemon it is just that that daemon happens to be systemd, PID 1, which runs as root.  So is Docker fundamentally flawed?  I can&rsquo;t imagine how you could say that because Rocket follow a very similar paradigm, it just happens to be built into systemd.  The fundamental issue is that both Docker and systemd want to be the daemon to manage containers.</p>
+
+<p>This conflict ends up being the crux of the issue.  While CoreOS is touted as being the best platform to run docker, you have to realize that CoreOS revolves around systemd, not Docker.   Fleet, CoreOS’s container scheduler, in fact interfaces with systemd, not Docker.  It is merely a systemd unit scheduler and those units may just happen to run Docker containers.  As I mentioned before this model does not work well because systemd can not effectively manage Docker containers.  If you want to understand some more nitty-gritty details about this refer to a project I created, <a href="https://github.com/ibuildthecloud/systemd-docker">systemd-docker</a>, which was created as an attempt to find a happy compromise between systemd and Docker.</p>
+
+<p>While CoreOS may list many reasons why Rocket is better, it also happens to be a nice opportunity to allow them to write a systemd friendly container system.  In fact if you want to build a Rocket stage1 implementation that is not built on systemd, you will most likely find yourself back to a design very similar to what Docker is today.</p>
+
+<h2>How can this be resolved?</h2>
+
+<p>I like CoreOS very much.  The sad truth is that running Docker containers on CoreOS is really not a nice experience.  I&rsquo;ve spent a huge amount of time dealing with this and attempting to facilitate some solution.  We absolutely don&rsquo;t need a rewrite of Docker to fix all of this but we do need some cooperation.</p>
+
+<p>There are two solutions for this problem.  First, it must be clear to say that Docker will not give up its daemon.  It is just not feasible because Docker would have to give up its remote API and then also be tied to systemd.  So the question becomes how can these two daemons (Docker and systemd) nicely cooperate.</p>
+
+<p>One solution is that systemd exposes an API such that a caller can put a process into an existing cgroup or a child of a cgroup.  One of the main issues is that the Docker daemon has no ability to launch a container that is related to an existing systemd service unit.  I&rsquo;ve <a href="http://lists.freedesktop.org/archives/systemd-devel/2014-October/023944.html">brought this up with the systemd developers</a> and they have added it to their todo list.</p>
+
+<p>The second solution is that the Docker daemon communicates back to the Docker client to launch the container as a child of the client and not the daemon.  I have had a couple discussions with Michael Crosby from Docker, Inc. on this topic that initiated from a <a href="https://botbot.me/freenode/docker-dev/2014-07-10/?msg=17771621&amp;page=7">long IRC discussion</a>.  In the end it is a workable solution that can solve some other issues like Docker restarts not restarting containers.</p>
+
+<p>There needs to be a change in systemd or Docker to fix this.  Why hasn&rsquo;t anything been done?  Simply put, nobody seems to be sufficiently motivated to do the work to fix the issue (including me).  Is Docker fundamentally flawed?  I don’t think so.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Darren Shepherd
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-12-03T16:34:41-07:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>4:34 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://www.ibuildthecloud.com/blog/2014/12/03/is-docker-fundamentally-flawed/" data-via="ibuildthecloud" data-counturl="http://www.ibuildthecloud.com/blog/2014/12/03/is-docker-fundamentally-flawed/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/11/announcing-rancher-dot-io/" title="Previous Post: Announcing Rancher.io: Portable Infrastructure Services for Docker">&laquo; Announcing Rancher.io: Portable Infrastructure Services for Docker</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Darren Shepherd -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
