@@ -4,7 +4,7 @@
   <title><![CDATA[i build the cloud]]></title>
   <link href="http://www.ibuildthecloud.com/atom.xml" rel="self"/>
   <link href="http://www.ibuildthecloud.com/"/>
-  <updated>2014-12-03T17:40:46-07:00</updated>
+  <updated>2014-12-03T17:53:32-07:00</updated>
   <id>http://www.ibuildthecloud.com/</id>
   <author>
     <name><![CDATA[Darren Shepherd]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What’s Missing From Rocket? The User Experience]]></title>
+    <link href="http://www.ibuildthecloud.com/blog/2014/12/03/whats-missing-from-rocket-the-user-experience/"/>
+    <updated>2014-12-03T17:49:14-07:00</updated>
+    <id>http://www.ibuildthecloud.com/blog/2014/12/03/whats-missing-from-rocket-the-user-experience</id>
+    <content type="html"><![CDATA[<p>Flying to Amsterdam for DockerCon, I was thinking about this week’s introduction of Rocket by CoreOS, and wanted to share a few thoughts.  First, it’s important to remember that container technology has been around for a long time.  Docker supports Linux kernels that predate the release of Docker itself.  If containers have been around for awhile, why are Docker and containers suddenly all the rage?  It has to do with user experience.  The beauty of Docker is that it packages container technology in a way that clicks with users.  By consistently focusing on the user experience and interface, Docker’s has built a following of passionate developers who love working with it.</p>
+
+<p>Rocket and the accompanying App Container specification seem to have missed this fundamental point about Docker.  If you can accuse Docker, Inc. of one thing it is that it consistently strives to control the experience of its users.  Rocket and the App Container spec take a very different approach, as they are trying to define a low level technical specification with no vision for how it will be consumed by users.  This approach seems misguided and bound to have no more impact than previous container projects like LXC or Solaris Zones (which technically are great projects, especially Solaris Zones).</p>
+
+<p>Rocket itself is a light wrapper around systemd’s nspawn.  This could change over time, but given that systemd is an essential part of CoreOS, a non-systemd implementation is probably unlikely to come from CoreOS.  The most important thing about this week’s announcement is the App Container specification.  Much of the concern lately in the community has been around the fact that Docker is increasing it’s scope.  Not Docker, Inc, but Docker the tool.  By creating a specification it has the ability to limit the scope to create one composable unit.  That specification can then be used as a building block in other tools and products.  Since Docker has no formal definition of the scope of the API it becomes less clear to those wishing to build products around Docker how the future of Docker will impact their product.</p>
+
+<p>So what does the App Container specification mean to users and how will it impact how users interact with containers?  Perhaps a good starting point is to imagine what would happen if Docker implemented the App Container specification.  Users interface with Docker in three ways: the Docker CLI, the Remote API, and the Dockerfile.  I don’t believe the App Container spec would have any direct impact on any of these touch points. Some of how Docker works would change, such as how Docker stores and looks up images and their meta data, but most of this would be hidden from to the user.</p>
+
+<p>To sum this all up, Docker’s success is much attributed to its user interface.  Rocket and its App Container specification attempt to standardize internal details of container technologies that mean very little to users.  To build upon the momentum of Docker and its success has more to do with innovating on and expanding the user interface and much less to do with low level container technologies.  Rocket is really not a competitor to Docker.  It can potentially be used to implement Docker.  If Rocket is extended to include a richer user experience then it will be a real alternative to Docker, but that would defeat the purpose of Rocket being a simple container runtime and packaging format.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Is Docker Fundamentally Flawed?]]></title>
